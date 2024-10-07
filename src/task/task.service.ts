@@ -20,7 +20,7 @@ export class TaskService {
         throw new NotFoundException(`a task com esse id ${id} n existe`)
     }
 
-    
+
     update (task: TaskDto){
         let taskIndex = this.tasks.findIndex(t => t.id === task.id);
          
@@ -31,5 +31,14 @@ export class TaskService {
 
     throw new HttpException (`task with id ${task.id} nout found`, HttpStatus.BAD_REQUEST);
 }
+
+    delete(id: string){
+        let   taskIndex = this.tasks.findIndex( t => t.id === id);
+                if (taskIndex >=0){
+                    this.tasks.splice(taskIndex, 1);
+                    return
+                }
+                throw new HttpException( `task with id ${id} not found`, HttpStatus.BAD_REQUEST);
+    }
 
 }
