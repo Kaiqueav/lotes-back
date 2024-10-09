@@ -11,9 +11,8 @@ create(newUser:UserDTO){
     this.users.push(newUser);
    
 }
-           
-
-    
-
-
+       findByUserName(username:string): UserDTO | null{
+        return this.users.find(user => username === username);
+       }
+  
 }
